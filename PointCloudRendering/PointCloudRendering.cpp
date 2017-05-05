@@ -1,5 +1,6 @@
 // PointCloudRendering.cpp : 定义应用程序的入口点。
-//
+//20170505
+//branch:zyj
 
 #include "stdafx.h"
 #include "PointCloudRendering.h"

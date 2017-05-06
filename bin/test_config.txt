@@ -1,0 +1,55 @@
+TOTALNUM		600
+window_pos		1440	0
+actual_height		100
+display_radius		100
+project_distance	200
+view_position		500	800
+
+// 参数分别为：xy旋转、xyz平移、模型缩放、模型名称、绑定shader名称
+// model 180.0 180.0 0.0 0.0 0.0 0.2 ruler00                 texture
+// model 180.0 180.0 0.0 0.0 0.0 0.3 ruler                 texture
+// model 330.0 0.0 10.0 60.0 -70.0 0.3 cube_zju1                 texture
+// model 0.0 0.0 0.0 30.0 0.0 0.18 cube_zju2                 texture
+model 0.0 0.0 0.0 30.0 0.0 0.18 magic_cube                 texture
+// model 0.0 0.0 0.0 50.0 0.0 0.6 earth_new                texture
+// model -40.0 0.0 -20.0 0.0 0.0 0.16 cube_oe                 texture
+// model 0.0 0.0 -40.0 0.0 0.0 0.16 cube_oe                 texture
+// model 270.0 0.0 0.0 20.0 0.0 0.15 castle                phong_texture
+// model 135.0 0.0 0.0 0.0 0.0 0.9 spider-man                phong_texture
+// model 0.0 0.0 0.0 0.0 0.0 65.8 chess                phong_texture
+// model 0.0 0.0 0.0 50.0 0.0 0.2 tiananmen                phong_texture
+// model 0.0 0.0 0.0 0.0 0.0 0.6 house_plant                phong_texture
+// model 0.0 0.0 0.0 0.0 0.0 0.6 girl                phong_texture
+// model -45.0 0.0 0.0 60.0 0.0 0.113 yao                phong_texture
+// model 0.0 0.0 0.0 30.0 0.0 0.09 heart                phong_no_texture
+// model 0.0 0.0 0.0 30.0 0.0 0.09 rapha                phong_no_texture
+
+// model 0.0 15.0 -40.0 -10.0 15.0 26.8 kongfu_monkey         phong_texture
+// model 0.0 15.0 30.0 -10.0 15.0 26.8 kongfu_panda         phong_texture
+// model 0.0 0.0 -45.0 -10.0 -55.0 43.3 kongfu_squirrel         phong_texture
+// model 0.0 0.0 -35.0 -40.0 65.0 43.4 kongfu_tigeress         phong_texture
+// model 0.0 0.0 -40.0 -10.0 -95.0 43.3 kon gfu_squirrel         phong_texture
+// model 0.0 0.0 -10.0 -40.0 100.0 43.4 kongfu_tigeress         phong_texture
+
+// model -90.0 180.0 0.0 35.0 0.0 0.1 cube_zju1                 texture
+// model 0.0 0.0 0.0 0.0 0.0 50 chessman\chessboard                 phong_texture
+// model 0.0 0.0 5.0 0.0 45.0 50 chessman\queen                 phong_texture
+// model 0.0 0.0 20.0 0.0 45.0 50 chessman\bishop                 phong_texture
+// model 0.0 0.0 30.0 0.0 45.0 50 chessman\knight                 phong_texture
+// model 0.0 0.0 40.0 0.0 45.0 50 chessman\rook                 phong_texture
+// model 0.0 0.0 0.0 -30.0 0.0 1.2 heavy_dynamic                phong_texture
+// model 0.0 0.0 0.0 0.0 0.0 0.15 heavy_dynamic                phong_texture
+// model 225.0 0.0 0.0 0.0 0.0 0.1 cube_sig                 texture
+// model 0.0 0.0 0.0 0.0 0.0 0.1 cube_sig                 texture
+// model 0.0 0.0 30.0 40.0 0.0 0.1 cube_sig                 texture
+// model 0.0 0.0 0.0 34.0 0.0 0.1 cube_zju1                 texture
+// model 0.0 0.0 0.0 0.0 0.0 0.5 ruler00                 texture
+// model 0.0 0.0 0.0 10.0 0.0 2.4 chess_new                 phong_texture
+// model 0.0 0.0 0.0 -20.0 0.0 5.3 carousel_reduced                 texture
+// model 0.0 0.0 0.0 10.0 0.0 2.4 chess_baked                texture
+
+// model 0.0 0.0 0.0 0.0 0.0 2.8 chessman_new\board                 phong_texture
+// model 0.0 0.0 7.0 0.0 49.0 2.8 chessman_new\blackking                 phong_texture
+// model 0.0 0.0 -35.0 0.0 35.0 2.8 chessman_new\whiterook                 phong_texture
+// model 0.0 0.0 -21 0.0 -35 2.8 chessman_new\blackrook                 phong_texture
+// model 0.0 0.0 -21.0 0.0 -7.0 2.8 chessman_new\whiteking                 phong_texture

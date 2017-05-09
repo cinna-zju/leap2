@@ -557,8 +557,13 @@ string NumToString(double d)
 
 void keyboard_interaction()
 {
-	if (keys['0'])				m_model_scale *= 1.1;
-	else if (keys['9'])			m_model_scale /= 1.1;
+	if (keys['0']) {
+		m_model_scale *= 1.1; Sleep(100);
+	}
+	if (keys['9']) {
+		m_model_scale /= 1.1; Sleep(100);
+	}
+
 	else if (keys['1'])			m_rotate_vec.x += 10;
 	else if (keys['2'])			m_rotate_vec.x -= 10;
 	else if (keys['3'])			m_rotate_vec.y += 10;

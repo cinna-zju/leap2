@@ -560,7 +560,7 @@ void keyboard_interaction()
 	if (keys['0']) {
 		m_model_scale *= 1.1; Sleep(100);
 	}
-	if (keys['9']) {
+	else if (keys['9']) {
 		m_model_scale /= 1.1; Sleep(100);
 	}
 	else if (keys['1']) {

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "common.h"
 
@@ -93,10 +93,18 @@ void SampleListener::onConnect(const Leap::Controller& controller)
 {
 	std::cout << "Connected" << std::endl;
 
-	//controller.enableGesture(Gesture::TYPE_CIRCLE);
+	controller.enableGesture(Leap::Gesture::TYPE_CIRCLE);
+
+
 	controller.enableGesture(Leap::Gesture::TYPE_KEY_TAP);
-	/*controller.enableGesture(Gesture::TYPE_SCREEN_TAP);
-	controller.enableGesture(Gesture::TYPE_SWIPE);*/
+	controller.config().setFloat("Gesture.KeyTap.MinDownVelocity", 40.0);
+	controller.config().setFloat("Gesture.KeyTap.HistorySeconds", .2);
+	controller.config().setFloat("Gesture.KeyTap.MinDistance", 8.0);
+	controller.config().save();
+
+	controller.enableGesture(Leap::Gesture::TYPE_SCREEN_TAP);
+
+	controller.enableGesture(Leap::Gesture::TYPE_SWIPE);
 }
 
 void SampleListener::onDisconnect(const Leap::Controller& controller)
@@ -110,11 +118,8 @@ void SampleListener::onExit(const Leap::Controller& controller)
 	std::cout << "Exited" << std::endl;
 }
 
-
-void SampleListener::onFrame(const Leap::Controller& controller)
+void drawHands(const Leap::Frame &frame)
 {
-	const Leap::Frame frame = controller.frame();
-	// Get the most recent frame and report some basic information
 	float scale = 1.0;
 	Leap::HandList hands = frame.hands();
 	numFingers = 0;
@@ -153,7 +158,7 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 				cv::Point fingerPos(img_w / 2 + fingerVec.x*scale, img_h / 2 + fingerVec.z*scale);
 				//cv::Point3d fingerPos3d(fingerVec.x*scale  ,fingerVec.y*scale  , fingerVec.z*scale  );
 
-				fingerVec.x += fingerVec.y / 5; /////////////////Ð£Õý  ÖØÒª///////////////////////// 
+				fingerVec.x += fingerVec.y / 5; /////////////////Ð£ï¿½ï¿½  ï¿½ï¿½Òª///////////////////////// 
 
 				cv::Point3d fingerPos3d = coordinate_trans(fingerVec);
 				fingersPos[numFingers] = fingerPos3d;
@@ -222,7 +227,7 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 				cv::Point fingerPos(img_w / 2 + fingerVec.x*scale, img_h / 2 + fingerVec.z*scale);
 				//cv::Point3d fingerPos3d(fingerVec.x*scale  ,fingerVec.y*scale  , fingerVec.z*scale  );
 
-				fingerVec.x += fingerVec.y / 5; /////////////////Ð£Õý  ÖØÒª///////////////////////// 
+				fingerVec.x += fingerVec.y / 5; /////////////////Ð£ï¿½ï¿½  ï¿½ï¿½Òª///////////////////////// 
 
 				cv::Point3d fingerPos3d = coordinate_trans(fingerVec);
 				fingersPos[numFingers] = fingerPos3d;
@@ -251,35 +256,12 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 				numFingers++;
 			}
 		}
-		if (finger1_L.y<100 && finger1_R.y<100 /*&& abs(finger1_L.y-finger1_R.y)<20*/)
-			zoom = true;
-		else
-			zoom = false;
+
 		pinch_obj_idx = 0;
 
 		cv::Point3d finger1_L_base, finger1_R_base;
 
-		if (zoom)
-		{
-			//	cv::putText(img_lp,NumToString(88888.88888) ,cv::Point(200,200),cv::FONT_HERSHEY_SIMPLEX, 1.0,cv::Scalar(255,255,255),1);
-			//finger1_LR_dis = finger_dis(finger1_L,finger1_R);
-			finger1_LR_dis = abs(finger1_L.x - finger1_R.x);
-			if (!zoom_base)
-			{
-				finger1_LR_dis_base = finger1_LR_dis;	zoom_base = true;
-			}
-		}
-		else
-		{
-			//finger1_LR_dis_base = finger1_LR_dis;
-			zoom_base = false;
-		}
 
-		zoomscale = 1 + 0.3*((finger1_LR_dis + 0.1) - (finger1_LR_dis_base + 0.1)) / (finger1_LR_dis + 0.1);
-		if (zoomscale<0.7)
-			zoomscale = 0.7;
-		if (abs(zoomscale)>1.3)
-			zoomscale = 1.3;
 
 		cv::putText(img_lp, NumToString(finger1_LR_dis) + "  " + NumToString(finger1_LR_dis_base), cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 1);
 		cv::putText(img_lp, NumToString(finger1_L.x) + "  " + NumToString(finger1_L.y) + "  " + NumToString(finger1_L.z), cv::Point(50, 100), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(255, 255, 255), 1);
@@ -294,9 +276,99 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 	//}
 
 	cv::imshow("finger", img_lp);
-	if(cv::waitKey(1) == 27)
+	if (cv::waitKey(1) == 27)
 		exit(0);
 	img_lp.setTo(0);
+}
+void SampleListener::onFrame(const Leap::Controller& controller)
+{
+	const Leap::Frame frame = controller.frame();
+	Leap::CircleGesture circle;
+	Leap::SwipeGesture swipe;
+
+
+	// Get the most recent frame and report some basic information
+	//drawHands(frame);
+
+	Leap::GestureList gestures = frame.gestures();
+	Leap::Vector swipeDirection;
+	for (Leap::GestureList::const_iterator gl = gestures.begin(); gl != frame.gestures().end(); gl++)
+	{
+		switch ((*gl).type()) {
+		case Leap::Gesture::TYPE_CIRCLE:
+			//Handle circle gestures
+			circle = (*gl);
+			if (circle.pointable().direction().angleTo(circle.normal()) <= Leap::PI / 2) {
+				if(m_model_scale < 10)
+					m_model_scale *= 1.03;
+
+			}
+			else
+			{
+				if(m_model_scale > 1)
+					m_model_scale /= 1.03;
+			}
+
+			break;
+		case Leap::Gesture::TYPE_KEY_TAP:
+			//Handle key tap gestures
+			//autoRotate = !autoRotate;
+			break;
+		case Leap::Gesture::TYPE_SCREEN_TAP:
+			//Handle screen tap gestures
+			m_model_scale = 1;
+			break;
+		case Leap::Gesture::TYPE_SWIPE:
+			//Handle swipe gestures
+			swipe = (*gl);
+			
+			swipeDirection = swipe.direction().normalized();
+			for (int i = 0; i < 10; i++) {
+				m_rotate_vec += (float)(10 - i) * glm::vec3(swipeDirection.x,
+					swipeDirection.y,
+					swipeDirection.z) ;
+
+			}
+			
+
+			break;
+		default:
+			//Handle unrecognized gestures
+			break;
+		}
+	}
+/////////////////////////////////crack
+	for (Leap::HandList::const_iterator hl = frame.hands().begin(); hl != frame.hands().end(); hl++) {
+		
+			//if((*hl).grabStrength() > 0.8) {
+			//	Leap::Vector pos = (*hl).palmPosition().normalized();
+			//	m_translate_vec = glm::vec3(pos.x, pos.y, pos.z);
+			//}
+		
+
+	}
+////////////////////////////////
+
+/*
+GESTURE: Drag
+ys
+2017/5/10
+grab and move
+
+TO-DO: stability need to improve
+*/
+
+	Leap::Hand rightHand = frame.hands().rightmost();
+	Leap::Vector rHandVelocity = rightHand.palmVelocity().normalized();
+	if (rightHand.grabStrength() > 0.7) {
+		m_translate_vec += glm::vec3(rHandVelocity.x,
+			rHandVelocity.y,
+			rHandVelocity.z)*(float)5;
+			
+	}
+
+	Sleep(30);
+
 }
 
 void RunLP()

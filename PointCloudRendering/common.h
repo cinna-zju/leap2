@@ -563,25 +563,60 @@ void keyboard_interaction()
 	if (keys['9']) {
 		m_model_scale /= 1.1; Sleep(100);
 	}
-
-	else if (keys['1'])			m_rotate_vec.x += 10;
-	else if (keys['2'])			m_rotate_vec.x -= 10;
-	else if (keys['3'])			m_rotate_vec.y += 10;
-	else if (keys['4'])			m_rotate_vec.y -= 10;
-	else if (keys['5'])			m_rotate_vec.z += 10;
-	else if (keys['6'])			m_rotate_vec.z -= 10;
-	else if (keys['P'])			d_far += 10;
-	else if (keys['O'])			d_far -= 10;
-	else if (keys['I'])			d_near += 10;
-	else if (keys['U'])			d_near -= 10;
-	else if (keys['Z'])			m_translate_vec.z += 10;
-	else if (keys['C'])			m_translate_vec.z -= 10;
-	else if (keys['A'])			m_translate_vec.x += 10;
-	else if (keys['D'])			m_translate_vec.x -= 10;
-	else if (keys['W'])			m_translate_vec.y += 10;
-	else if (keys['S'])			m_translate_vec.y -= 10;
-	else if (keys[' '])			snapshot_cloud = true;
-	else if (keys['M'])			snapshot_cloud = false;
+	else if (keys['1']) {
+		m_rotate_vec.x += 10; Sleep(100);
+	}
+	else if (keys['2']) {
+		m_rotate_vec.x -= 10; Sleep(100);
+	}
+	else if (keys['3']) {
+		m_rotate_vec.y += 10; Sleep(100);
+	}
+	else if (keys['4']) {
+		m_rotate_vec.y -= 10; Sleep(100);
+	}
+	else if (keys['5']) {
+		m_rotate_vec.z += 10; Sleep(100);
+	}
+	else if (keys['6']) {
+		m_rotate_vec.z -= 10; Sleep(100);
+	}
+	else if (keys['P']) {
+		d_far += 10; Sleep(100);
+	}
+	else if (keys['O']) {
+		d_far -= 10; Sleep(100);
+	}
+	else if (keys['I']) {
+		d_near += 10; Sleep(100);
+	}
+	else if (keys['U']) {
+		d_near -= 10; Sleep(100);
+	}
+	else if (keys['Z']) {
+		m_translate_vec.z += 10; Sleep(100);
+	}
+	else if (keys['C']) {
+		m_translate_vec.z -= 10; Sleep(100);
+	}
+	else if (keys['A']) {
+		m_translate_vec.x += 10; Sleep(100);
+	}
+	else if (keys['D']) {
+		m_translate_vec.x -= 10; Sleep(100);
+	}
+	else if (keys['W']) {
+		m_translate_vec.y += 10; Sleep(100);
+	}
+	else if (keys['S']) {
+		m_translate_vec.y -= 10; Sleep(100);
+	}
+	else if (keys[' ']) {
+		snapshot_cloud = true; Sleep(100);
+	}
+	else if (keys['M']) {
+		snapshot_cloud = false; Sleep(100);
+	}
 }
 
 void setAdvanceMVP()

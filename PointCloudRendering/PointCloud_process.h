@@ -470,9 +470,15 @@ void GLMonitor()
 	if (which_device == -1)
 	{
 		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		bool res = loadAssImp("model\\earth_small\\earth_small.obj", PointCloudIndices, PointCloudVertex, PointCloudUV, PointCloudNormal);
+		
+		//bool res = loadAssImp("model\\earth_small\\earth_small.obj", PointCloudIndices, PointCloudVertex, PointCloudUV, PointCloudNormal);
 
-		cv::Mat img_lp = cv::imread("model\\earth_small\\earth.png");
+		bool res = loadAssImp("model\\baymax\\baymax.obj", PointCloudIndices, PointCloudVertex, PointCloudUV, PointCloudNormal);
+
+		//cv::Mat img_lp = cv::imread("model\\earth_small\\earth.png");
+		
+		cv::Mat img_lp = cv::imread("model\\baymax\\bm.jpg");
+		
 		//cv::flip(img_lp, img_lp, -1);
 		cv::flip(img_lp, img_lp, 0);
 		glGenTextures(1, &mTexture);

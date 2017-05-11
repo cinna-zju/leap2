@@ -288,7 +288,7 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 
 
 	// Get the most recent frame and report some basic information
-	//drawHands(frame);
+	drawHands(frame);
 
 	Leap::GestureList gestures = frame.gestures();
 	Leap::Vector swipeDirection;
@@ -320,7 +320,7 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 			break;
 		case Leap::Gesture::TYPE_SWIPE:
 			//Handle swipe gestures
-			swipe = (*gl);
+		/*	swipe = (*gl);
 			
 			swipeDirection = swipe.direction().normalized();
 			for (int i = 0; i < 10; i++) {
@@ -329,7 +329,7 @@ void SampleListener::onFrame(const Leap::Controller& controller)
 					swipeDirection.z) ;
 
 			}
-			
+		*/	
 
 			break;
 		default:
@@ -359,12 +359,24 @@ TO-DO: stability need to improve
 */
 
 	Leap::Hand rightHand = frame.hands().rightmost();
-	Leap::Vector rHandVelocity = rightHand.palmVelocity().normalized();
+	Leap::Frame pFrame = controller.frame(25);
+	Leap::Hand pRHand = pFrame.hands().rightmost();
+	Leap::Vector dHandPos = rightHand.stabilizedPalmPosition()-pRHand.stabilizedPalmPosition();
+	dHandPos = dHandPos.normalized();
 	if (rightHand.grabStrength() > 0.7) {
-		m_translate_vec += glm::vec3(rHandVelocity.x,
-			rHandVelocity.y,
-			rHandVelocity.z)*(float)5;
+		m_rotate_vec += glm::vec3(dHandPos.x,
+			dHandPos.y,
+			dHandPos.z)*(float)5;
 			
+	}
+
+	if (frame.hands().count() == 2) {
+		Leap::Hand leftHand = frame.hands().leftmost();
+		Leap::Hand pLeftHand = pFrame.hands().leftmost();
+		Leap::Vector lpos = leftHand.stabilizedPalmPosition() - pLeftHand.stabilizedPalmPosition();
+		
+		//Leap::Vector dist = rightHand.stabilizedPalmPosition() - leftHand.stabilizedPalmPosition();
+		m_translate_vec =  glm::vec3(-lpos.x, lpos.y, lpos.z);
 	}
 
 	Sleep(30);

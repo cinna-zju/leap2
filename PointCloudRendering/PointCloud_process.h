@@ -105,7 +105,7 @@ void setBasicMVP()
 	mProjectionMatrix = glm::perspective(FoV, 1.0f, 0.1f, 10000.0f);
 	mViewMatrix = glm::lookAt(CameraPos, CameraTarget, CameraUp);
 
-	if (use_leapmotion)
+	/*if (use_leapmotion)
 	{
 		if (rot_byLP)
 		{
@@ -114,9 +114,10 @@ void setBasicMVP()
 		}
 		else
 			m_rotate_vec = m_rotate_vec_tmp;
+			;
 	}
 	else
-		m_rotate_vec_tmp = m_rotate_vec;
+		m_rotate_vec_tmp = m_rotate_vec;*/
 	mScaleMatrix = glm::scale(glm::mat4(1.0), glm::vec3(m_model_scale, m_model_scale, m_model_scale));
 	mTranslateMatrix = glm::translate(glm::mat4(1.0), m_translate_vec);
 	mRotateMatrix_x = glm::rotate(glm::mat4(1.0), m_rotate_vec.x, glm::vec3(1.0, 0.0, 0.0));

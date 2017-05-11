@@ -72,8 +72,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>../bin</OutDir>
-    <IncludePath>D:\OpenCV2.4.3\opencv\build\include;D:\OpenCV2.4.3\opencv\build\include\opencv;D:\OpenCV2.4.3\opencv\build\include\opencv2;$(KINECTSDK20_DIR)\inc;D:\OpenNI2_x86\Include;D:\Assimp\assimp-3.1.1\include\DevIL;D:\Assimp\assimp-3.1.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(KINECTSDK20_DIR)\lib\x86;D:\Assimp\assimp-3.1.1\lib;D:\OpenNI2_x86\Lib;D:\OpenCV2.4.3\opencv\build\x86\vc10\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\OpenCV2.4.3\opencv\build\include;C:\OpenCV2.4.3\opencv\build\include\opencv;C:\OpenCV2.4.3\opencv\build\include\opencv2;$(KINECTSDK20_DIR)\inc;C:\OpenNI2_x86\Include;C:\Assimp\assimp-3.1.1\include\DevIL;C:\Assimp\assimp-3.1.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(KINECTSDK20_DIR)\lib\x86;C:\Assimp\assimp-3.1.1\lib;C:\OpenNI2_x86\Lib;C:\OpenCV2.4.3\opencv\build\x86\vc10\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -96,7 +96,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../lib;../lib/GL;../lib/GLFW;../lib/leapmotion/x86;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../lib;../lib/GL;../lib/GLFW;../lib/leapmotion/x86</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;opencv_calib3d243d.lib;opencv_contrib243d.lib;opencv_core243d.lib;opencv_features2d243d.lib;opencv_flann243d.lib;opencv_gpu243d.lib;opencv_highgui243d.lib;opencv_imgproc243d.lib;opencv_legacy243d.lib;opencv_ml243d.lib;opencv_objdetect243d.lib;opencv_ts243d.lib;opencv_video243d.lib;DevIL.lib;assimp-vc120-mtd.lib;realsense-d.lib;OpenNI2.lib;Leap.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
